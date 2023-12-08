@@ -13,3 +13,19 @@ spring:
       ddl-auto: none
     show-sql: true
     database: postgresql
+
+  mail:
+    host: smtp.gmail.com
+    mail: port=587
+    username: polenok@bgitu.ru
+    password: d&4bXBWAmamot
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+
+
