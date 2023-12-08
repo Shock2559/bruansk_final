@@ -1,0 +1,15 @@
+server:
+  port: 8097
+
+spring:
+  datasource:
+    url: jdbc:postgresql://90.156.208.88:5432/bruansk_final
+    username: bruansk
+    password: bruansk
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: postgresql
