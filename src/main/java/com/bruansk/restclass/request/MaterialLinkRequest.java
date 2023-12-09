@@ -2,6 +2,8 @@ package com.bruansk.restclass.request;
 
 import lombok.*;
 
+import java.util.UUID;
+
 @Data
 @Setter
 @Getter
@@ -13,5 +15,6 @@ public class MaterialLinkRequest {
     private String name;
     private String link;
     private String link_preview;
+    private int idTestCategory;
 
 }

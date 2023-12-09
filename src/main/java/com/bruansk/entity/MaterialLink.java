@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,5 +33,8 @@ public class MaterialLink {
 
     @Column(name = "link_preview")
     private String linkPreview;
+
+    @Column(name = "id_test_category")
+    private int idTestCategory;
 
 }

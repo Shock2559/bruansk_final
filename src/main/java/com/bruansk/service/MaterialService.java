@@ -64,6 +64,7 @@ public class MaterialService {
             materialLink.setName(request.getName());
             materialLink.setLink(request.getLink());
             materialLink.setMaterialType((MaterialType) materialTypeRepository.my_get_type_by_id(request.getType_id()).get(0));
+            materialLink.setIdTestCategory(request.getIdTestCategory());
 
             materialLinkRepository.save(materialLink);
 
@@ -121,5 +122,52 @@ public class MaterialService {
         }
 
     }
+
+    public ResponseEntity<Object> getAllArticleByAge(int id) {
+        try{
+
+            List<Object> list = materialLinkRepository.get_all_article_by_age(id);
+
+            AnswerList answerList = new AnswerList();
+            answerList.setAnswer(list);
+
+            return new ResponseEntity<>(answerList, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Object> getArticleByAge(int id) {
+        try{
+
+            List<Object> list = materialLinkRepository.get_article_by_age(id);
+
+            AnswerList answerList = new AnswerList();
+            answerList.setAnswer(list);
+
+            return new ResponseEntity<>(answerList, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Object> getVideoLinkByAge(int id) {
+        try{
+
+            List<Object> list = materialLinkRepository.get_video_link_by_age(id);
+
+            AnswerList answerList = new AnswerList();
+            answerList.setAnswer(list);
+
+            return new ResponseEntity<>(answerList, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 
 }

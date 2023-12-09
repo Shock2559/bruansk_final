@@ -6,6 +6,8 @@ import com.bruansk.restclass.request.MessageRequest;
 import com.bruansk.service.DefaultEmailService;
 import com.bruansk.service.MaterialService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,6 +76,8 @@ public class MaterialController {
 
     @PostMapping("/create_article")
     @Operation(description = "Создание ссылки на статью или видео")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
+            schema = @Schema(implementation = MaterialLinkRequest.class)))
     public ResponseEntity<Object> postCrateArticle(@RequestHeader("Authorization") String token,
                                                    @RequestBody MaterialLinkRequest materialLink) {
 
@@ -150,6 +154,76 @@ public class MaterialController {
 
         return materialService.getAllArticle();
     }
+
+    @GetMapping("/get_all_article_by_id_age")
+    @Operation(description = "Возвращает все материалы по id age")
+    public ResponseEntity<Object> getAllArticleByAge(@RequestHeader("Authorization") String token,
+                                                     @RequestParam Integer id) {
+
+        try{
+
+            int responseCode = CheckToken.checkToken(token);
+
+            if(responseCode == 401) {
+                return new ResponseEntity<>("Invalid token", HttpStatus.FORBIDDEN);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return materialService.getAllArticleByAge(id);
+    }
+
+
+    @GetMapping("/get_article_by_id_age")
+    @Operation(description = "Вовзаращет список статей по id age")
+    public ResponseEntity<Object> getArticleByAge(@RequestHeader("Authorization") String token,
+                                                  @RequestParam Integer id) {
+
+        try{
+
+            int responseCode = CheckToken.checkToken(token);
+
+            if(responseCode == 401) {
+                return new ResponseEntity<>("Invalid token", HttpStatus.FORBIDDEN);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return materialService.getArticleByAge(id);
+
+    }
+
+
+    @GetMapping("/get_video_link_by_id_age")
+    @Operation(description = "Возвращает список ссылок на видео ролик по id age")
+    public ResponseEntity<Object> getVideoLinkByAge(@RequestHeader("Authorization") String token,
+                                                    @RequestParam Integer id) {
+
+        try{
+
+            int responseCode = CheckToken.checkToken(token);
+
+            if(responseCode == 401) {
+                return new ResponseEntity<>("Invalid token", HttpStatus.FORBIDDEN);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return materialService.getVideoLinkByAge(id);
+
+    }
+
+
+
 
 
 
