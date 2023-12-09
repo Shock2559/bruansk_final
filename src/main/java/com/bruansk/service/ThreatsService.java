@@ -30,10 +30,6 @@ public class ThreatsService {
             threatsRepository.save(threats);
 
 
-            //TODO добавить вызов api бота
-
-
-
             String text = "Name " + threats.getName() + " Description " + threats.getDescription();
 
             URL url = new URL("https://af48-195-239-50-94.ngrok-free.app/send_message_bot");
@@ -45,11 +41,6 @@ public class ThreatsService {
             connection.setRequestProperty("message", text);
 
             connection.getResponseCode();
-
-
-
-            //TODO доабвить отправку websoket
-
 
 
             return new ResponseEntity<>("Ok", HttpStatus.OK);
